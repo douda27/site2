@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rachid Boulazhar - CV</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#5D5CDE',
+                        secondary: '#4B4ACB',
+                        dark: {
+                            bg: '#181818',
+                            card: '#252525',
+                            text: '#E0E0E0'
+                        }
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                        'slide-up': 'slideUp 0.5s ease-in-out'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        }
+                    }
+                }
+            }
+        }
+
+        // Check for dark mode preference
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (event.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+    </script>
+</head>
+<body class="bg-white dark:bg-dark-bg text-gray-800 dark:text-dark-text transition-colors duration-300">
+    <!-- Header with navigation -->
+    <header class="sticky top-0 z-50 bg-white dark:bg-dark-bg shadow-md dark:shadow-gray-800/20">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-2xl md:text-3xl font-bold text-primary">Rachid Boulazhar</h1>
+            <nav class="hidden md:flex space-x-6">
+                <a href="#about" class="hover:text-primary transition-colors">À propos</a>
+                <a href="#experience" class="hover:text-primary transition-colors">Expérience</a>
+                <a href="#skills" class="hover:text-primary transition-colors">Compétences</a>
+                <a href="#education" class="hover:text-primary transition-colors">Formation</a>
+                <a href="#contact" class="hover:text-primary transition-colors">Contact</a>
+            </nav>
+            <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-dark-card transition-colors">
+                <i class="fas fa-moon dark:hidden"></i>
+                <i class="fas fa-sun hidden dark:block"></i>
+            </button>
+            <!-- Mobile menu button -->
+            <button id="mobile-menu-button" class="md:hidden p-2 rounded">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-dark-bg shadow-md animate-fade-in">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+                <a href="#about" class="hover:text-primary transition-colors py-2">À propos</a>
+                <a href="#experience" class="hover:text-primary transition-colors py-2">Expérience</a>
+                <a href="#skills" class="hover:text-primary transition-colors py-2">Compétences</a>
+                <a href="#education" class="hover:text-primary transition-colors py-2">Formation</a>
+                <a href="#contact" class="hover:text-primary transition-colors py-2">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Hero Section -->
+        <section id="about" class="py-10 md:py-16 animate-slide-up">
+            <div class="max-w-4xl mx-auto bg-gray-50 dark:bg-dark-card rounded-xl shadow-lg p-6 md:p-8">
+                <div class="flex flex-col md:flex-row gap-6 md:gap-10 items-center">
+                    <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden rounded-full border-4 border-primary/20 shadow-lg flex items-center justify-center" id="photo-container">
+                        <!-- Fallback avec initiales -->
+                        <span class="text-4xl md:text-6xl font-bold text-primary" id="initials">RB</span>
+                    </div>
+                    
+                    <script>
+                        // Fonction pour charger l'image avec gestion d'erreur
+                        function loadProfileImage() {
+                            const photoContainer = document.getElementById('photo-container');
+                            const initials = document.getElementById('initials');
+                            
+                            const img = new Image();
+                            img.onload = function() {
+                                // L'image est chargée avec succès
+                                photoContainer.innerHTML = '';  // Supprimer les initiales
+                                img.className = 'w-full h-full object-cover';
+                                img.alt = 'Rachid Boulazhar';
+                                photoContainer.appendChild(img);
+                            };
+                            
+                            img.onerror = function() {
+                                // Erreur de chargement - garder les initiales visibles
+                                console.log("Erreur de chargement de l'image");
+                            };
+                            
+                            // Essayer de charger l'image
+                            img.src = 'https://i.imgur.com/GfQjvAL.jpg';
+                        }
+                        
+                        // Charger l'image quand le document est prêt
+                        document.addEventListener('DOMContentLoaded', loadProfileImage);
+                    </script>
+                    <div class="flex-1">
+                        <h2 class="text-2xl md:text-3xl font-bold mb-2">Spécialiste en Électricité et Instrumentation</h2>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Plus de 20 ans d'expérience en électricité, instrumentation, systèmes de brûleurs et technologies de détection de flamme.</p>
+                        <div class="mb-4 text-sm md:text-base">
+                            <p class=""><i class="fas fa-envelope mr-2 text-primary"></i> r.boulazhar@9online.fr</p>
+                            <p class=""><i class="fas fa-phone mr-2 text-primary"></i> 06.20.01.14.04</p>
+                        </div>
+                        <div class="border-t dark:border-gray-700 pt-4 mt-2">
+                            <h3 class="font-semibold mb-2 text-lg">Objectif Professionnel</h3>
+                            <p class="text-gray-600 dark:text-gray-300">Fort de plus de 20 ans d'expérience en électricité et instrumentation, je possède également une expertise approfondie dans les systèmes de brûleurs et les technologies de détection de flamme. Je cherche désormais à mettre à profit mon savoir-faire technique et mes compétences en leadership au sein d'une entreprise dynamique.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="py-10">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-2xl md:text-3xl font-bold mb-8 pb-4 border-b dark:border-gray-700 text-primary">Expérience Professionnelle</h2>
+                
+                <!-- Experience timeline -->
+                <div class="space-y-8">
+                    <!-- ArcelorMittal - Recent -->
+                    <div class="relative pl-8 md:pl-10 pb-6 group">
+                        <!-- Timeline dot and line -->
+                        <div class="absolute left-0 top-1 h-full">
+                            <div class="w-4 h-4 bg-primary rounded-full"></div>
+                            <div class="w-0.5 h-full bg-gray-300 dark:bg-gray-700 ml-2 -mt-2"></div>
+                        </div>
+                        
+                        <div class="bg-white dark:bg-dark-card rounded-lg shadow-md p-5 transition-all duration-300 hover:shadow-lg group-hover:translate-x-1">
+                            <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-2 mb-3">
+                                <h3 class="text-xl font-bold">ARCELORMITTAL</h3>
+                                <span class="text-sm md:text-base bg-primary/10 text-primary px-3 py-1 rounded-full">2019 - 2024</span>
+                            </div>
+                            <h4 class="text-lg font-semibold mb-2">Contremaître au Service Électrique</h4>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">Leader mondial de la sidérurgie</p>
+                            <ul class="list-disc list-inside space-y-1 text-gray-700 dark:text-gray-300">
+                                <li>Manager d'une équipe de 6 superviseurs électriciens et instrumentistes dans le département des Hauts Fourneaux.</li>
+                                <li>Garantie de l'efficacité opérationnelle et du respect des normes de sécurité strictes.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- ArcelorMittal - Support -->
+                    <div class="relative pl-8 md:pl-10 pb-6 group">
+                        <!-- Timeline dot and line -->
+                        <div class="absolute left-0 top-1 h-full">
+                            <div class="w-4 h-4 bg-primary rounded-full"></div>
+                            <div class="w-0.5 h-full bg-gray-300 dark:bg-gray-700 ml-2 -mt-2"></div>
+                        </div>
+                        
+                        <div class="bg-white dark:bg-dark-card rounded-lg shadow-md p-5 transition-all duration-300 hover:shadow-lg group-hover:translate-x-1">
+                            <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-2 mb-3">
+                                <h3 class="text-xl font-bold">ARCELORMITTAL</h3>
+                                <span class="text-sm md:text-base bg-primary/10 text-primary px-3 py-1 rounded-full">2015 - 2019</span>
+                            </div>
+                            <h4 class="text-lg font-semibold mb-2">Technicien au Service Support</h4>
+                            <ul class="list-disc list-inside space-y-1 text-gray-700 dark:text-gray-300">
+                                <li>Gestion de projets techniques pour les départements des Hauts Fourneaux, de la Préparation des Charges et de la Cokerie.</li>
+                                <li>Élaboration de la planification détaillée des projets, avec identification des étapes clés et gestion des ressources.</li>
+                                <li>Conduite d'un projet de remplacement et d'installation de nouveaux brûleurs allumeurs gaz ainsi que des panoplies gaz associées.</li>
+                                <li>Intégration de systèmes de détection de flammes (IR, UV et ionisation).</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- ArcelorMittal - Préparateur -->
+                    <div class="relative pl-8 md:pl-10 pb-6 group">
+                        <!-- Timeline dot and line -->
+                        <div class="absolute left-0 top-1 h-full">
+                            <div class="w-4 h-4 bg-primary rounded-full"></div>
+                            <div class="w-0.5 h-full bg-gray-300 dark:bg-gray-700 ml-2 -mt-2"></div>
+                        </div>
+                        
+                        <div class="bg-white dark:bg-dark-card rounded-lg shadow-md p-5 transition-all duration-300 hover:shadow-lg group-hover:translate-x-1">
+                            <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-2 mb-3">
+                                <h3 class="text-xl font-bold">ARCELORMITTAL</h3>
+                                <span class="text-sm md:text-base bg-primary/10 text-primary px-3 py-1 rounded-full">2012 - 2015</span>
+                            </div>
+                            <h4 class="text-lg font-semibold mb-2">Préparateur de Travaux</h4>
+                            <ul class="list-disc list-inside space-y-1 text-gray-700 dark:text-gray-300">
+                                <li>Planification et réalisation des travaux de maintenance, gestion des urgences.</li>
+                                <li>Coordination des sous-traitants et gestion des priorités de maintenance via SAP.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- BOCCARD -->
+                    <div class="relative pl-8 md:pl-10 pb-6 group">
+                        <!-- Timeline dot and line -->
+                        <div class="absolute left-0 top-1 h-full">
+                            <div class="w-4 h-4 bg-primary rounded-full"></div>
+                            <div class="w-0.5 h-full bg-gray-300 dark:bg-gray-700 ml-2 -mt-2"></div>
+                        </div>
+                        
+                        <div class="bg-white dark:bg-dark-card rounded-lg shadow-md p-5 transition-all duration-300 hover:shadow-lg group-hover:translate-x-1">
+                            <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-2 mb-3">
+                                <h3 class="text-xl font-bold">BOCCARD (TOTAL GABON)</h3>
+                                <span class="text-sm md:text-base bg-primary/10 text-primary px-3 py-1 rounded-full">2012 - 2015</span>
+                            </div>
+                            <h4 class="text-lg font-semibold mb-2">Responsable Précommissioning E&I</h4>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">Leader mondial en ingénierie industrielle</p>
+                            <ul class="list-disc list-inside space-y-1 text-gray-700 dark:text-gray-300">
+                                <li>Supervision de la construction du site PG2 de TOTAL GABON à Port Gentil.</li>
+                                <li>Leadership d'une équipe de 14 personnes en précommissioning électrique et instrumentation.</li>
+                                <li>Garantie de la conformité des installations et de l'intégrité des dossiers techniques.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- DIETSMANN -->
+                    <div class="relative pl-8 md:pl-10 pb-6 group">
+                        <!-- Timeline dot and line -->
+                        <div class="absolute left-0 top-1 h-full">
+                            <div class="w-4 h-4 bg-primary rounded-full"></div>
+                            <div class="w-0.5 h-full bg-gray-300 dark:bg-gray-700 ml-2 -mt-2"></div>
+                        </div>
+                        
+                        <div class="bg-white dark:bg-dark-card rounded-lg shadow-md p-5 transition-all duration-300 hover:shadow-lg group-hover:translate-x-1">
+                            <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-2 mb-3">
+                                <h3 class="text-xl font-bold">DIETSMANN (TOTAL GABON)</h3>
+                                <span class="text-sm md:text-base bg-primary/10 text-primary px-3 py-1 rounded-full">2011 - 2012</span>
+                            </div>
+                            <h4 class="text-lg font-semibold mb-2">Superviseur Élec/Instrum</h4>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">Leader mondial en maintenance industrielle</p>
+                            <ul class="list-disc list-inside space-y-1 text-gray-700 dark:text-gray-300">
+                                <li>Maintenance préventive et curative des installations Offshore et Onshore de TOTAL GABON.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- ArcelorMittal - Technicien -->
+                    <div class="relative pl-8 md:pl-10 pb-6 group">
+                        <!-- Timeline dot and line -->
+                        <div class="absolute left-0 top-1 h-full">
+                            <div class="w-4 h-4 bg-primary rounded-full"></div>
+                            <div class="w-0.5 h-full bg-gray-300 dark:bg-gray-700 ml-2 -mt-2"></div>
+                        </div>
+                        
+                        <div class="bg-white dark:bg-dark-card rounded-lg shadow-md p-5 transition-all duration-300 hover:shadow-lg group-hover:translate-x-1">
+                            <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-2 mb-3">
+                                <h3 class="text-xl font-bold">ARCELORMITTAL</h3>
+                                <span class="text-sm md:text-base bg-primary/10 text-primary px-3 py-1 rounded-full">2008 - 2013</span>
+                            </div>
+                            <h4 class="text-lg font-semibold mb-2">Technicien E&I</h4>
+                            <ul class="list-disc list-inside space-y-1 text-gray-700 dark:text-gray-300">
+                                <li>Responsable de l'entretien préventif et curatif en instrumentation du Département Fonte.</li>
+                                <li>Supervision de la partie électrique et instrumentation dans la production de charbon pulvérisé.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- PELLENC - Proto -->
+                    <div class="relative pl-8 md:pl-10 pb-6 group">
+                        <!-- Timeline dot and line -->
+                        <div class="absolute left-0 top-1 h-full">
+                            <div class="w-4 h-4 bg-primary rounded-full"></div>
+                            <div class="w-0.5 h-full bg-gray-300 dark:bg-gray-700 ml-2 -mt-2"></div>
+                        </div>
+                        
+                        <div class="bg-white dark:bg-dark-card rounded-lg shadow-md p-5 transition-all duration-300 hover:shadow-lg group-hover:translate-x-1">
+                            <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-2 mb-3">
+                                <h3 class="text-xl font-bold">PELLENC SA</h3>
+                                <span class="text-sm md:text-base bg-primary/10 text-primary px-3 py-1 rounded-full">2001 - 2008</span>
+                            </div>
+                            <h4 class="text-lg font-semibold mb-2">Technicien Proto</h4>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">Leader mondial en automatisation agricole</p>
+                            <ul class="list-disc list-inside space-y-1 text-gray-700 dark:text-gray-300">
+                                <li>Conception et réalisation de programmes automates (Schneider).</li>
+                                <li>Conception de câblages d'armoires électriques et pneumatiques.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- PELLENC - Bureau d'Etude -->
+                    <div class="relative pl-8 md:pl-10 group">
+                        <!-- Timeline dot without line -->
+                        <div class="absolute left-0 top-1">
+                            <div class="w-4 h-4 bg-primary rounded-full"></div>
+                        </div>
+                        
+                        <div class="bg-white dark:bg-dark-card rounded-lg shadow-md p-5 transition-all duration-300 hover:shadow-lg group-hover:translate-x-1">
+                            <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-2 mb-3">
+                                <h3 class="text-xl font-bold">PELLENC SA</h3>
+                                <span class="text-sm md:text-base bg-primary/10 text-primary px-3 py-1 rounded-full">1998 - 2001</span>
+                            </div>
+                            <h4 class="text-lg font-semibold mb-2">Technicien Bureau d'Étude</h4>
+                            <ul class="list-disc list-inside space-y-1 text-gray-700 dark:text-gray-300">
+                                <li>Conception de projets associant automatismes et électricité avec des outils CAO.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-10">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-2xl md:text-3xl font-bold mb-8 pb-4 border-b dark:border-gray-700 text-primary">Compétences Clés</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div class="bg-white dark:bg-dark-card rounded-lg shadow-md p-5 transition-all duration-300 hover:shadow-lg hover:scale-[1.01]">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-primary/10 p-3 rounded-full mr-4">
+                                <i class="fas fa-users text-primary text-xl"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold">Management & Coordination</h3>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300">Coordination et management d'équipes techniques dans des environnements industriels complexes.</p>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-dark-card rounded-lg shadow-md p-5 transition-all duration-300 hover:shadow-lg hover:scale-[1.01]">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-primary/10 p-3 rounded-full mr-4">
+                                <i class="fas fa-tasks text-primary text-xl"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold">Planification & Exécution</h3>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300">Planification et exécution de travaux industriels complexes, gestion des ressources et des priorités.</p>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-dark-card rounded-lg shadow-md p-5 transition-all duration-300 hover:shadow-lg hover:scale-[1.01]">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-primary/10 p-3 rounded-full mr-4">
+                                <i class="fas fa-tools text-primary text-xl"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold">Maintenance</h3>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300">Expertise en maintenance préventive et curative (électrique et instrumentation) sur des installations industrielles.</p>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-dark-card rounded-lg shadow-md p-5 transition-all duration-300 hover:shadow-lg hover:scale-[1.01]">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-primary/10 p-3 rounded-full mr-4">
+                                <i class="fas fa-microchip text-primary text-xl"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold">Automatismes</h3>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300">Conception et programmation d'automates industriels, notamment Schneider.</p>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-dark-card rounded-lg shadow-md p-5 transition-all duration-300 hover:shadow-lg hover:scale-[1.01]">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-primary/10 p-3 rounded-full mr-4">
+                                <i class="fas fa-shield-alt text-primary text-xl"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold">Sécurité Industrielle</h3>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300">Maîtrise des normes de sécurité industrielle, notamment SEVESO 2.</p>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-dark-card rounded-lg shadow-md p-5 transition-all duration-300 hover:shadow-lg hover:scale-[1.01]">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-primary/10 p-3 rounded-full mr-4">
+                                <i class="fas fa-fire text-primary text-xl"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold">Systèmes de Brûleurs</h3>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300">Expertise dans les systèmes de brûleurs et les technologies de détection de flamme (IR, UV, ionisation).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="py-10">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-2xl md:text-3xl font-bold mb-8 pb-4 border-b dark:border-gray-700 text-primary">Formation & Langues</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-8">
+                    <div class="bg-white dark:bg-dark-card rounded-lg shadow-md p-5 transition-all duration-300 hover:shadow-lg hover:scale-[1.01]">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-primary/10 p-3 rounded-full mr-4">
+                                <i class="fas fa-graduation-cap text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold">KEDGE Business School</h3>
+                                <p class="text-sm text-gray-600 dark:text-gray-300">2015</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300">Formation Managériale en continu</p>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-dark-card rounded-lg shadow-md p-5 transition-all duration-300 hover:shadow-lg hover:scale-[1.01]">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-primary/10 p-3 rounded-full mr-4">
+                                <i class="fas fa-graduation-cap text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold">BTS M.A.I</h3>
+                                <p class="text-sm text-gray-600 dark:text-gray-300">2001</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300">Mécanique Automatisme Industriel</p>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-dark-card rounded-lg shadow-md p-5 transition-all duration-300 hover:shadow-lg mt-5">
+                    <h3 class="text-lg font-semibold mb-3 flex items-center">
+                        <div class="bg-primary/10 p-2 rounded-full mr-3">
+                            <i class="fas fa-language text-primary"></i>
+                        </div>
+                        Langues
+                    </h3>
+                    <p class="text-gray-600 dark:text-gray-300">Maîtrise des langues et des cultures francophones et arabophones (Français, Arabe).</p>
+                </div>
+                
+                <div class="bg-white dark:bg-dark-card rounded-lg shadow-md p-5 transition-all duration-300 hover:shadow-lg mt-5">
+                    <h3 class="text-lg font-semibold mb-3 flex items-center">
+                        <div class="bg-primary/10 p-2 rounded-full mr-3">
+                            <i class="fas fa-heart text-primary"></i>
+                        </div>
+                        Centres d'Intérêt
+                    </h3>
+                    <p class="text-gray-600 dark:text-gray-300">Passionné de tennis, engagé dans l'apprentissage continu et la pratique de ce sport, en explorant constamment de nouvelles techniques et stratégies pour améliorer mon jeu.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-10">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-2xl md:text-3xl font-bold mb-8 pb-4 border-b dark:border-gray-700 text-primary">Contact</h2>
+                
+                <div class="bg-white dark:bg-dark-card rounded-lg shadow-md p-6 md:p-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="flex items-start">
+                            <div class="bg-primary/10 p-3 rounded-full mr-4 mt-1">
+                                <i class="fas fa-envelope text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold mb-1">Email</h3>
+                                <p class="text-gray-600 dark:text-gray-300">r.boulazhar@9online.fr</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-primary/10 p-3 rounded-full mr-4 mt-1">
+                                <i class="fas fa-phone text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold mb-1">Téléphone</h3>
+                                <p class="text-gray-600 dark:text-gray-300">06.20.01.14.04</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 dark:bg-dark-card py-6 mt-10">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-gray-600 dark:text-gray-300">Rachid Boulazhar - CV 2024</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        
+        themeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+        });
+
+        // Hide mobile menu when clicking on a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Animation for sections when scrolling
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-slide-up');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            if (section.id !== 'about') { // Skip the hero section as it's animated by default
+                section.classList.remove('animate-slide-up');
+                observer.observe(section);
+            }
+        });
+    </script>
+</body>
+</html>
